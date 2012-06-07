@@ -1,0 +1,18 @@
+
+<table>
+	<tr>
+	  <th>title</th>
+	  <th>city</th>
+	  <th>email</th>
+	</tr>
+<% @rides.each do |ride| %>
+	<tr>
+	  <td><%= ride.id %><%= link_to ride.title.truncate(40), ride.url %></td>
+	  <td><%= ride.cl_city %></td>
+	  <td><%= ride.email %></td>
+	</tr>
+	<tr>
+	  <td colspan=3>
+	  <%= strip_tags(ride.body.split("<!--").first) %>
+<% end %>
+</table>

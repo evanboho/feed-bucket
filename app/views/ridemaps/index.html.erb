@@ -1,0 +1,32 @@
+<% @polycoords%>
+<div style="float:left;"><%# gmaps4rails(@json) %></div>
+<%# @polylines_json %>
+
+<% gmaps({ "polylines"  => { "data" => " [ #{@polylines} ] " }})%>
+<% @polycoords.each do |coord| %>
+  <% coord[:latitude] %>
+<% end %>
+
+
+<%= gmaps({"polylines" => { "data" => " #{polycoords_helper.to_json} " } }) %>
+<%= polycoords_helper.to_json %>
+<div style="float: right;">
+	<ul>
+	<%= @ridemaps.each do |ride| %>
+	<li>
+		<%= ride.start_city %>, <%= ride.start_state %> to <%= ride.end_city %>, <%= ride.end_state %>
+	</li>
+	<% end %>
+</div>
+
+<div style="clear:both;">
+<%= simple_form_for @ridemap do |f| %>
+	<%= f.input :start_city %>
+	<%= f.input :start_state %>
+	
+	<%= f.input :end_city %>
+	<%= f.input :end_state %>
+	
+	<%= f.submit %>
+	
+<% end %>
